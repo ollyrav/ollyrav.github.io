@@ -1,0 +1,43 @@
+/* ===== base.css : shared by every page (tokens, nav, footer) ===== */
+:root{--bg:#FFFFFF;--ink:#03111D;--muted:rgba(3,17,29,.62);--line:rgba(3,17,29,.16);--box:#F8F8F8;--pill:rgba(3,17,29,.07);--check:rgba(3,17,29,.06);--accent:#EE4392;--foot:#03111D;--onfoot:#FAFAFA;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="dark"]{--bg:#03111D;--ink:#FAFAFA;--muted:rgba(250,250,250,.62);--line:rgba(250,250,250,.16);--box:rgba(250,250,250,.05);--pill:rgba(250,250,250,.1);--check:rgba(250,250,250,.07)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.w{margin:0 auto;padding:0 clamp(20px,4.5vw,56px)}
+h2{margin:0;font-size:clamp(22px,2.4vw,28px);font-weight:700;letter-spacing:-.02em}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px)}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar .w{display:flex;justify-content:space-between;align-items:center;height:64px;gap:16px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand b{font-weight:800;font-size:15px;letter-spacing:.005em;text-transform:uppercase}
+.brand a{text-decoration:none}
+.avail{display:inline-flex;align-items:center;gap:8px;font-size:12.5px}
+.avail:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.right{display:flex;align-items:center;gap:clamp(16px,3vw,36px)}
+.bar ul{display:flex;gap:clamp(16px,3vw,32px);list-style:none;margin:0;padding:0;font-size:14.5px;font-weight:500}
+.bar ul a{text-decoration:none}.bar ul a:hover{text-decoration:underline;text-underline-offset:6px}
+.sw{all:unset;cursor:pointer;width:44px;height:22px;border-radius:999px;border:1px solid var(--line);position:relative;flex:none}
+.sw:after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--accent);transition:transform .2s}
+.sw[aria-checked="true"]:after{transform:translateX(22px)}
+.sw:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* footer (with cursor "flashlight" reveal) */
+@property --r{syntax:'<length>';inherits:true;initial-value:0px}
+.end{position:relative;overflow:hidden;isolation:isolate;background:var(--foot);color:var(--onfoot);padding:clamp(56px,8vw,96px) 0 32px;border-top:1px solid var(--line)}
+.end::before{content:"";position:absolute;inset:0;z-index:-1;background:url(../images/footer-gradient.jpeg) center/cover no-repeat;opacity:0;-webkit-mask-image:radial-gradient(circle var(--r) at var(--mx,50%) var(--my,50%),#000 0,rgba(0,0,0,.55) 45%,transparent 100%);mask-image:radial-gradient(circle var(--r) at var(--mx,50%) var(--my,50%),#000 0,rgba(0,0,0,.55) 45%,transparent 100%);transition:--r .8s cubic-bezier(.22,1,.36,1),opacity .5s ease;pointer-events:none}
+.end.lit::before{opacity:1;--r:320px}
+.end .row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
+.end h2{font-weight:800;text-transform:uppercase;font-size:clamp(52px,12.4vw,172px);line-height:.92;letter-spacing:-.04em}
+.go{font-size:17px;text-decoration:none;display:inline-flex;gap:8px;white-space:nowrap}
+.go i{font-style:normal;color:var(--accent)}.go:hover span{text-decoration:underline;text-underline-offset:6px}
+.info{margin-top:clamp(48px,7vw,88px);font-size:12.5px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;opacity:.85}
+.info a{margin-right:18px;text-decoration:none}.info a:hover{text-decoration:underline}
+
+@media (max-width:760px){.avail{display:none}.end .row{flex-direction:column;align-items:flex-start}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
