@@ -31,8 +31,8 @@ var R=118,       /* radius of the circle in px while the cursor is moving */
     SHRINKK=60,  /* how fast it shrinks back down (higher = faster) */
     SHRINKB=6,   /* the bounce as it settles at the small size (lower = more bounce, around 25 = none) */
     OPACITY=.8,  /* how strong the gradient picture is, from 0 to 1 (lower = softer, less contrast) */
-    LSPEED=1,    /* how fast the gradient drifts and swirls (1 = very slow, higher = faster, 0 = frozen) */
-    BLEND=14,    /* how much the blobs melt into each other (1 = not at all, higher = softer and more blended) */
+    LSPEED=1.8,    /* how fast the gradient drifts and swirls (1 = very slow, higher = faster, 0 = frozen) */
+    BLEND=15,    /* how much the blobs melt into each other (1 = not at all, higher = softer and more blended) */
     GRAIN=.11,   /* strength of the grainy texture, from 0 (none) to 1 (strong) */
     GRAINSIZE=.5, /* how coarse the grain is, in px (bigger = chunkier) */
     STIFF=1200,  /* how tightly the circle is pulled to the cursor (higher = sticks closer, lower = floatier) */

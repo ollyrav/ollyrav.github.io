@@ -16,8 +16,8 @@
 .mail button{all:unset;cursor:pointer;display:inline-flex;color:var(--accent)}.mail button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .us{display:inline-block;position:relative;width:3.3em;height:0}   /* the indent on the first line of the intro, filled with a thin pink line */
 .us:before{content:"";position:absolute;left:0;bottom:.06em;width:3em;height:1.5px;background:var(--accent)}
-.hero p{margin:0;width:min(100%,21em);font-size:clamp(19px,2.2vw,26px);font-weight:500;line-height:1.25;letter-spacing:-.01em}
-.sub{margin:10px 0 0;font-size:12.5px;color:var(--muted);max-width:28em}
+.hero p{margin:0;width:min(100%,21em);font-size:22px;font-weight:500;line-height:1.25;letter-spacing:-.01em}
+.sub{margin:10px 0 0;font-size:14px;color:var(--muted);max-width:28em}
 
 /* project thumbnails */
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}
@@ -30,11 +30,17 @@
 
 /* about */
 .left{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
-.left p{margin:0;font-size:12.5px;line-height:1.55;color:var(--muted);max-width:32em}
+.left p{margin:0;font-size:14px;line-height:1.55;color:var(--muted);max-width:32em}
 .bio{display:flex;flex-direction:column;flex:1;gap:18px;width:100%;max-width:32em}.bio p{max-width:none}
 .pw{width:57%;margin-left:43%;margin-top:auto;aspect-ratio:5/3;overflow:hidden;border-radius:3px}
-img.photo{display:block;width:100%;height:100%;object-fit:cover;background:none;transform:scale(1) translate(0,0);transition:transform .9s cubic-bezier(.22,1,.36,1);will-change:transform}
+img.photo{display:block;width:100%;height:100%;object-fit:cover;background:none;transform:scale(1) translate(0,0);transition:transform .9s cubic-bezier(.22,1,.36,1),opacity .6s ease;will-change:transform}
+.pw{position:relative}
+#about .left{align-self:start}
+img.photo.alt{position:absolute;left:0;top:0;opacity:0;pointer-events:none}
+img.photo.alt.on{opacity:1}
 .pw:hover img.photo{transform:scale(1.04) translate(calc(var(--px,0)*14px),calc(var(--py,0)*10px))}
+.bio{position:relative}
+.plabel{position:absolute;bottom:0;right:calc(57% + 16px);max-width:calc(43% - 16px);text-align:right;font-size:11px;line-height:1.35;color:var(--muted)}
 .more{margin-top:auto;padding-top:20px;font-size:13.5px;font-weight:500;text-decoration:none;display:inline-flex;gap:8px;align-items:center}
 .more i{font-style:normal;color:var(--accent)}
 
@@ -44,19 +50,23 @@ img.photo{display:block;width:100%;height:100%;object-fit:cover;background:none;
 .role{border-bottom:1px solid var(--line)}
 .role:last-child{border-bottom:0}   /* no line under the final job role */
 .role:last-child .rh{padding-bottom:0}   /* so the bottom of the list lines up with the bottom of the photo */
+.role:last-child .rpi p{padding-bottom:0}   /* and no extra space after the text, so it still lines up with the photo */
 .role:first-child .rh{padding-top:0}
 .rh{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:24px 0}
 .rh:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.rh b{font-size:13.5px;font-weight:600}
-.rh em{font-style:normal;font-size:12px;color:var(--muted)}
+.rh b{font-size:14px;font-weight:600}
+.rh em{font-style:normal;font-size:14px;color:var(--muted)}
 .rh em .sep{display:inline-block;margin:0 .85em}
-.rh time{grid-column:2;grid-row:1;font-size:12px;color:var(--muted);text-align:right}
+.rh time{grid-column:2;grid-row:1;font-size:14px;color:var(--muted);text-align:right}
 .rh:after{content:"";grid-column:2;grid-row:2;justify-self:end;width:12px;height:12px;margin:3px 2px 0 0;background:linear-gradient(var(--accent),var(--accent)) center/12px 1.5px no-repeat,linear-gradient(var(--accent),var(--accent)) center/1.5px 12px no-repeat;transition:background-size .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
 .role.is-open .rh:after{background-size:12px 1.5px,1.5px 0;transform:rotate(180deg)}
-.rp{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .45s cubic-bezier(.22,1,.36,1),visibility 0s .45s}
-.rpi{overflow:hidden;min-height:0}
-.rpi p{margin:0;padding-bottom:24px;font-size:12.5px;color:var(--muted);max-width:88%;opacity:0;transition:opacity .2s ease-in}
-.role.is-open .rp{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .65s cubic-bezier(.22,1,.36,1),visibility 0s}
+/* the text of the other rows shrinks slightly while a row is open (set by home.js) */
+.rh b,.rh em{scale:var(--s,1);transform-origin:left center}
+.rh time{scale:var(--s,1);transform-origin:right center}
+.rh:after{scale:var(--s,1)}
+.rp{height:0;overflow:hidden;visibility:hidden}   /* the height of each panel, and the spacing of every row, is animated together by home.js so the list stays one fixed height */
+.rpi{min-height:0}
+.rpi p{margin:0;padding-bottom:24px;font-size:14px;color:var(--muted);max-width:88%;opacity:0;transition:opacity .2s ease-in}
 .role.is-open .rpi p{opacity:1;transition:opacity .3s ease-out .08s}
 
 /* testimonials */
@@ -67,8 +77,9 @@ img.photo{display:block;width:100%;height:100%;object-fit:cover;background:none;
 .rail{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-left:var(--x);scrollbar-width:none;margin-right:calc(-1 * clamp(20px,4.5vw,56px));padding-left:var(--x);-webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.2) calc(var(--x) * .35),rgba(0,0,0,.55) calc(var(--x) * .7),#000 var(--x),#000 calc(var(--x) + var(--cw)),rgba(0,0,0,.55) calc(var(--x) * 1.3 + var(--cw)),rgba(0,0,0,.2) calc(var(--x) * 1.65 + var(--cw)),transparent calc(var(--x) * 2 + var(--cw)));mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.2) calc(var(--x) * .35),rgba(0,0,0,.55) calc(var(--x) * .7),#000 var(--x),#000 calc(var(--x) + var(--cw)),rgba(0,0,0,.55) calc(var(--x) * 1.3 + var(--cw)),rgba(0,0,0,.2) calc(var(--x) * 1.65 + var(--cw)),transparent calc(var(--x) * 2 + var(--cw)))}
 .rail:after{content:"";flex:0 0 max(0px,calc(100cqw + var(--pad) - var(--x) - var(--cw) - 12px))}   /* a little spare room at the end so the last card can line up too */
 .rail::-webkit-scrollbar{display:none}
+.rail{cursor:grab}.rail.drag{cursor:grabbing;user-select:none;-webkit-user-select:none}
 .quote{flex:0 0 var(--cw);scroll-snap-align:start;background:var(--box);border-radius:3px;--p:clamp(28px,3vw,38px);--pb:calc(var(--p) - 8px);padding:var(--p) var(--p) var(--pb);position:relative;min-height:260px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;margin:0}
-.quote q{quotes:none;text-indent:1.8em;font-size:clamp(17px,1.7vw,21px);font-weight:500;line-height:1.28;letter-spacing:-.015em}
+.quote q{quotes:none;text-indent:1.8em;font-size:clamp(18px,1.85vw,22px);font-weight:500;line-height:1.28;letter-spacing:-.015em}
 /* big pale quote marks in the corners of the card: an opening one top left (the first line of text is indented to make room) and a closing one bottom right */
 .quote q:before,.quote q:after{position:absolute;font-size:3.1em;line-height:1;font-weight:800;color:#DDDDDD;text-indent:0}
 :root[data-theme="dark"] .quote q:before,:root[data-theme="dark"] .quote q:after{color:rgba(250,250,250,.2)}
@@ -76,15 +87,15 @@ img.photo{display:block;width:100%;height:100%;object-fit:cover;background:none;
 .quote q:after{font-size:3.3em;bottom:calc(var(--pb) + 4.5px - .57em);right:calc(var(--p) - .09em)}
 .quote q:before{content:"“"}.quote q:after{content:"”"}
 .quote b{font-weight:800}
-.who{font-size:13.5px;font-weight:600;line-height:1.35}   /* same type styling as the job roles list */
-.who span{display:block;margin-top:3px;font-size:12px;font-weight:400;color:var(--muted)}
+.who{font-size:14px;font-weight:600;line-height:1.35}   /* same type styling as the job roles list */
+.who span{display:block;margin-top:3px;font-size:14px;font-weight:400;color:var(--muted)}
 .dots{display:flex;justify-content:center;margin:16px 0 0 var(--x);width:var(--cw)}   /* sits centred under the middle card */
 .dots div{display:inline-flex;gap:5px;background:var(--accent);border-radius:999px;padding:5px 9px}
 .dots button{all:unset;cursor:pointer;width:6px;height:6px;border-radius:50%;background:#FAFAFA;opacity:.5}
 .dots button[aria-current="true"]{opacity:1}
 .dots button:focus-visible{outline:2px solid #FAFAFA;outline-offset:2px}
 
-@media (max-width:760px){.grid,.two{grid-template-columns:1fr}#roles{padding-top:0}.hero-row{flex-direction:column;align-items:flex-start}.left{gap:16px}.more{margin-top:0}.pw{width:67%;margin-left:33%}}
+@media (max-width:760px){.grid,.two{grid-template-columns:1fr}#roles{padding-top:0}.hero-row{flex-direction:column;align-items:flex-start}.left{gap:16px}.more{margin-top:0}.pw{width:67%;margin-left:33%} .plabel{right:calc(67% + 16px);max-width:calc(33% - 16px)}}
 /* on bigger screens the testimonials box starts at column 3 of a 5 column grid and runs 3 columns wide (to the edge of the screen); the heading sits in columns 1-2 */
 @media (min-width:761px){#people .two{grid-template-columns:repeat(5,minmax(0,1fr))}#people .two>:first-child{grid-column:1/3}#people .two>:last-child{grid-column:3/-1}}
 @media (prefers-reduced-motion:reduce){.card:hover .slot img,.pw:hover img.photo{transform:none}}

@@ -73,11 +73,11 @@ var PROJECTS=[
 
 /* ---------- ROLES (about section accordion) ---------- */
 var ROLES=[
-{order:10,visible:true,role:"Midweight Designer",org:"Ozone | London, UK",years:"2024-present",desc:"As an integral part of Ozone’s in-house creative team, Studiozone, I craft engaging campaigns that connect audiences with content and drive measurable impact for global brands."},
-{order:20,visible:true,role:"Digital Product Designer",org:"Life Moments | London, UK",years:"2021-2023",desc:"Working within the Design, Ethics & Behavioural Science team of a fast-paced fintech startup, delivering UX/UI design across web and mobile products, alongside graphic design for B2B marketing communications."},
-{order:30,visible:true,role:"Freelance Graphic Designer",org:"ollyrav design | Remote",years:"2020-2024",desc:"Delivering a wide variety of design solutions spanning web design, logo and brand identity, print collateral, social media content, motion graphics, and video editing."},
-{order:40,visible:true,role:"Product Design Intern",org:"Made | Antwerp, BE",years:"2020",desc:"A six month internship at one of Belgium's leading strategic product and digital design agencies."},
-{order:50,visible:true,role:"Industrial Design Intern",org:"Mormedi | Madrid, ES",years:"2018",desc:"A six month internship at a global business innovation and strategic design consultancy."}
+{order:10,visible:true,img:"",label:"",role:"Midweight Designer",org:"Ozone | London, UK",years:"2024-present",desc:"As an integral part of Ozone’s in-house creative team, Studiozone, I craft engaging campaigns that connect audiences with content and drive measurable impact for global brands."},
+{order:20,visible:true,img:"",label:"",role:"Digital Product Designer",org:"Life Moments | London, UK",years:"2021-2023",desc:"Working within the Design, Ethics & Behavioural Science team of a fast-paced fintech startup, delivering UX/UI design across web and mobile products, alongside graphic design for B2B marketing communications."},
+{order:30,visible:true,img:"",label:"",role:"Freelance Graphic Designer",org:"ollyrav design | Remote",years:"2020-2024",desc:"Delivering a wide variety of design solutions spanning web design, logo and brand identity, print collateral, social media content, motion graphics, and video editing."},
+{order:40,visible:true,img:"",label:"",role:"Product Design Intern",org:"Made | Antwerp, BE",years:"2020",desc:"A six month internship at one of Belgium's leading strategic product and digital design agencies."},
+{order:50,visible:true,img:"",label:"",role:"Industrial Design Intern",org:"Mormedi | Madrid, ES",years:"2018",desc:"A six month internship at a global business innovation and strategic design consultancy."}
 ];
 
 /* ---------- TESTIMONIALS ---------- */

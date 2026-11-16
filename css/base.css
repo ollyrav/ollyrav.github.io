@@ -4,7 +4,7 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 :root[data-theme="dark"]{--bg:#03111D;--ink:#FAFAFA;--muted:rgba(250,250,250,.62);--line:rgba(250,250,250,.16);--box:rgba(250,250,250,.05);--pill:rgba(250,250,250,.1);--check:rgba(250,250,250,.07)}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
 *,*:before,*:after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 14px/1.55 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .w{margin:0 auto;padding:0 clamp(20px,4.5vw,56px)}
@@ -17,7 +17,7 @@ h2{margin:0;font-size:clamp(22px,2.4vw,28px);font-weight:700;letter-spacing:-.02
 .brand{display:flex;align-items:center;gap:24px}
 .brand b{font-weight:800;font-size:15px;letter-spacing:.005em;text-transform:uppercase}
 .brand a{text-decoration:none}
-.avail{display:inline-flex;align-items:center;gap:8px;font-size:12.5px}
+.avail{display:inline-flex;align-items:center;gap:8px;font-size:12px}
 .avail:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
 /* a soft pink glow that gently pulses behind the dot on the "Available for work" badge */
 @keyframes availPulse{0%,100%{box-shadow:0 0 0 0 rgba(238,67,146,.4),0 0 3px 1px rgba(238,67,146,.3)}50%{box-shadow:0 0 0 6px rgba(238,67,146,0),0 0 9px 3px rgba(238,67,146,.14)}}
@@ -25,7 +25,8 @@ h2{margin:0;font-size:clamp(22px,2.4vw,28px);font-weight:700;letter-spacing:-.02
 @media (prefers-reduced-motion:reduce){.avail:before{animation:none;box-shadow:0 0 6px 1px rgba(238,67,146,.3)}}
 .right{display:flex;align-items:center;gap:clamp(16px,3vw,36px)}
 .bar ul{display:flex;gap:clamp(16px,3vw,32px);list-style:none;margin:0;padding:0;font-size:14.5px;font-weight:500}
-.bar ul a{text-decoration:none}.bar ul a:hover{text-decoration:underline;text-underline-offset:6px}
+.bar ul a{text-decoration:none;padding-bottom:3px;background:linear-gradient(currentColor,currentColor) right bottom/0 1px no-repeat;transition:background-size .55s cubic-bezier(.22,1,.36,1)}
+.bar ul a:hover{background-size:100% 1px;background-position:left bottom}
 /* light / dark switch: a sun on one side and a moon on the other. The round knob slides across and shows the icon for the mode you're in now */
 .sw{all:unset;cursor:pointer;width:52px;height:24px;border-radius:999px;border:1px solid var(--line);position:relative;flex:none;view-transition-name:sw;
 background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2303111D' stroke-opacity='.25' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/%3E%3C/svg%3E") 6px center/12px 12px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2303111D' stroke-opacity='.25' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/%3E%3C/svg%3E") 34px center/12px 12px no-repeat;background-color:transparent}
@@ -52,7 +53,7 @@ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
 .end .glow{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;mix-blend-mode:lighten}
 .end .row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
 .end h2{font-weight:800;text-transform:uppercase;font-size:clamp(52px,12.4vw,172px);line-height:.92;letter-spacing:-.04em}
-.go{font-size:17px;text-decoration:none;display:inline-flex;gap:8px;white-space:nowrap}
+.go{font-size:22px;text-decoration:none;display:inline-flex;gap:8px;white-space:nowrap}
 .go i{font-style:normal;color:var(--accent)}
 /* button links ("Contact me", "Get in touch", back links): the underline draws in from the left on hover and slides away to the right when you leave */
 .more span,.go span,.back span{padding-bottom:3px;margin-bottom:-3px;background:linear-gradient(currentColor,currentColor) right bottom/0 1px no-repeat;transition:background-size .55s cubic-bezier(.22,1,.36,1)}   /* the padding gives the line a little breathing room under the text; the matching negative margin keeps everything else where it was */
@@ -60,7 +61,7 @@ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
 /* the same underline for the footer social links and the email address under the heading */
 .info a,.mail a{text-decoration:none;padding-bottom:3px;background:linear-gradient(currentColor,currentColor) right bottom/0 1px no-repeat;transition:background-size .55s cubic-bezier(.22,1,.36,1)}
 .info a:hover,.mail a:hover{background-size:100% 1px;background-position:left bottom}
-.info{margin-top:clamp(48px,7vw,88px);font-size:12.5px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;opacity:.85}
+.info{margin-top:clamp(48px,7vw,88px);font-size:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;opacity:.85}
 .info a{margin-right:18px}
 
 @media (max-width:760px){.avail{display:none}.end .row{flex-direction:column;align-items:flex-start}}
