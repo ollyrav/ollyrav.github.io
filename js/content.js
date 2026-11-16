@@ -84,5 +84,5 @@ var ROLES=[
 var QUOTES=[
 {order:10,visible:true,text:"Olly is an <b>exceptional collaborator</b>, consistently willing to work closely with cross-functional teams to achieve project goals.",name:"Ben Leonard",role:"CEO, Life Moments"},
 {order:20,visible:true,text:"Olly would <b>add value to any design team</b> and I recommend him for any endeavour he chooses to pursue.",name:"Leander Feliers",role:"Senior Product Designer, Made"},
-{order:30,visible:true,text:"Olly joined the Mormedi team as an intern and made an immediate impact to the team, not only in terms of his <b>excellent attitude and application</b>, but also his capabilities as a designer.",name:"Nick Lendon",role:"Industrial Design Lead (former), Mormedi"}
+{order:30,visible:true,text:"Olly made an immediate impact as an intern, not only with his <b>excellent attitude and application</b>, but also his capabilities as a designer.",name:"Nick Lendon",role:"Industrial Design Lead (former), Mormedi"}
 ];

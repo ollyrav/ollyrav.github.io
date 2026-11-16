@@ -1,5 +1,5 @@
 /* ===== base.css : shared by every page (tokens, nav, footer) ===== */
-:root{--bg:#FFFFFF;--ink:#03111D;--muted:rgba(3,17,29,.62);--line:rgba(3,17,29,.16);--box:#F8F8F8;--pill:rgba(3,17,29,.07);--check:rgba(3,17,29,.06);--accent:#EE4392;--foot:#03111D;--onfoot:#FAFAFA;
+:root{--bg:#FFFFFF;--ink:#03111D;--muted:rgba(3,17,29,.62);--line:rgba(3,17,29,.16);--box:#F5F5F5;--pill:rgba(3,17,29,.07);--check:rgba(3,17,29,.06);--accent:#EE4392;--foot:#03111D;--onfoot:#FAFAFA;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 :root[data-theme="dark"]{--bg:#03111D;--ink:#FAFAFA;--muted:rgba(250,250,250,.62);--line:rgba(250,250,250,.16);--box:rgba(250,250,250,.05);--pill:rgba(250,250,250,.1);--check:rgba(250,250,250,.07)}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
@@ -14,30 +14,54 @@ h2{margin:0;font-size:clamp(22px,2.4vw,28px);font-weight:700;letter-spacing:-.02
 /* top bar */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
 .bar .w{display:flex;justify-content:space-between;align-items:center;height:64px;gap:16px}
-.brand{display:flex;align-items:center;gap:14px}
+.brand{display:flex;align-items:center;gap:24px}
 .brand b{font-weight:800;font-size:15px;letter-spacing:.005em;text-transform:uppercase}
 .brand a{text-decoration:none}
 .avail{display:inline-flex;align-items:center;gap:8px;font-size:12.5px}
 .avail:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+/* a soft pink glow that gently pulses behind the dot on the "Available for work" badge */
+@keyframes availPulse{0%,100%{box-shadow:0 0 0 0 rgba(238,67,146,.4),0 0 3px 1px rgba(238,67,146,.3)}50%{box-shadow:0 0 0 6px rgba(238,67,146,0),0 0 9px 3px rgba(238,67,146,.14)}}
+.avail:before{animation:availPulse 2.4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.avail:before{animation:none;box-shadow:0 0 6px 1px rgba(238,67,146,.3)}}
 .right{display:flex;align-items:center;gap:clamp(16px,3vw,36px)}
 .bar ul{display:flex;gap:clamp(16px,3vw,32px);list-style:none;margin:0;padding:0;font-size:14.5px;font-weight:500}
 .bar ul a{text-decoration:none}.bar ul a:hover{text-decoration:underline;text-underline-offset:6px}
-.sw{all:unset;cursor:pointer;width:44px;height:22px;border-radius:999px;border:1px solid var(--line);position:relative;flex:none}
-.sw:after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--accent);transition:transform .2s}
-.sw[aria-checked="true"]:after{transform:translateX(22px)}
+/* light / dark switch: a sun on one side and a moon on the other. The round knob slides across and shows the icon for the mode you're in now */
+.sw{all:unset;cursor:pointer;width:52px;height:24px;border-radius:999px;border:1px solid var(--line);position:relative;flex:none;view-transition-name:sw;
+background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2303111D' stroke-opacity='.25' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/%3E%3C/svg%3E") 6px center/12px 12px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2303111D' stroke-opacity='.25' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/%3E%3C/svg%3E") 34px center/12px 12px no-repeat;background-color:transparent}
+.sw{background-blend-mode:normal}
+:root[data-theme="dark"] .sw{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FAFAFA' stroke-opacity='.25' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/%3E%3C/svg%3E") 6px center/12px 12px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FAFAFA' stroke-opacity='.25' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/%3E%3C/svg%3E") 34px center/12px 12px no-repeat}
+.sw:before,.sw:after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background-color:var(--accent);background-repeat:no-repeat;background-position:center;background-size:12px 12px;transition:transform .5s cubic-bezier(.34,1.2,.5,1),opacity .3s ease}
+.sw:after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/%3E%3C/svg%3E")}
+.sw:before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/%3E%3C/svg%3E");opacity:0;transform:translateX(0) rotate(-90deg) scale(.5)}
+.sw:after{transform:translateX(0) rotate(0) scale(1)}
+.sw[aria-checked="true"]:after{transform:translateX(28px) rotate(90deg) scale(.5);opacity:0}
+.sw[aria-checked="true"]:before{transform:translateX(28px) rotate(0) scale(1);opacity:1}
+/* smooth cross-fade of the whole page when switching mode (browsers that support it); the switch itself stays live so the knob still slides */
+::view-transition-old(root),::view-transition-new(root){animation-duration:.45s;animation-timing-function:ease}
+::view-transition-group(sw){animation:none}
+::view-transition-old(sw){display:none}
+::view-transition-new(sw){animation:none}
+@keyframes knobStretch{0%{scale:1 1}30%{scale:1.18 .92}60%{scale:.97 1.03}100%{scale:1 1}}
+.sw.moving:before,.sw.moving:after{animation:knobStretch .5s ease-out}   /* the knob stretches out as it sets off, then squashes and settles */
+@media (prefers-reduced-motion:reduce){.sw.moving:before,.sw.moving:after{animation:none}}
 .sw:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
 /* footer (with cursor "flashlight" reveal) */
-@property --r{syntax:'<length>';inherits:true;initial-value:0px}
 .end{position:relative;overflow:hidden;isolation:isolate;background:var(--foot);color:var(--onfoot);padding:clamp(56px,8vw,96px) 0 32px;border-top:1px solid var(--line)}
-.end::before{content:"";position:absolute;inset:0;z-index:-1;background:url(../images/footer-gradient.jpeg) center/cover no-repeat;opacity:0;-webkit-mask-image:radial-gradient(circle var(--r) at var(--mx,50%) var(--my,50%),#000 0,rgba(0,0,0,.55) 45%,transparent 100%);mask-image:radial-gradient(circle var(--r) at var(--mx,50%) var(--my,50%),#000 0,rgba(0,0,0,.55) 45%,transparent 100%);transition:--r .8s cubic-bezier(.22,1,.36,1),opacity .5s ease;pointer-events:none}
-.end.lit::before{opacity:1;--r:320px}
+.end .glow{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;mix-blend-mode:lighten}
 .end .row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
 .end h2{font-weight:800;text-transform:uppercase;font-size:clamp(52px,12.4vw,172px);line-height:.92;letter-spacing:-.04em}
 .go{font-size:17px;text-decoration:none;display:inline-flex;gap:8px;white-space:nowrap}
-.go i{font-style:normal;color:var(--accent)}.go:hover span{text-decoration:underline;text-underline-offset:6px}
+.go i{font-style:normal;color:var(--accent)}
+/* button links ("Contact me", "Get in touch", back links): the underline draws in from the left on hover and slides away to the right when you leave */
+.more span,.go span,.back span{padding-bottom:3px;margin-bottom:-3px;background:linear-gradient(currentColor,currentColor) right bottom/0 1px no-repeat;transition:background-size .55s cubic-bezier(.22,1,.36,1)}   /* the padding gives the line a little breathing room under the text; the matching negative margin keeps everything else where it was */
+.more:hover span,.go:hover span,.back:hover span{background-size:100% 1px;background-position:left bottom}
+/* the same underline for the footer social links and the email address under the heading */
+.info a,.mail a{text-decoration:none;padding-bottom:3px;background:linear-gradient(currentColor,currentColor) right bottom/0 1px no-repeat;transition:background-size .55s cubic-bezier(.22,1,.36,1)}
+.info a:hover,.mail a:hover{background-size:100% 1px;background-position:left bottom}
 .info{margin-top:clamp(48px,7vw,88px);font-size:12.5px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;opacity:.85}
-.info a{margin-right:18px;text-decoration:none}.info a:hover{text-decoration:underline}
+.info a{margin-right:18px}
 
 @media (max-width:760px){.avail{display:none}.end .row{flex-direction:column;align-items:flex-start}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
